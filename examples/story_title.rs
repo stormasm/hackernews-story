@@ -25,7 +25,7 @@ fn main() -> Result<(), Error> {
     let pool = pool.clone();
     let mut con = pool.get().unwrap();
 
-    let path = "./../data/story-title.json";
+    let path = "/tmp13/hackernews-story-archive/data/story-title.json";
     let mut output = File::create(path)?;
 
     for key in &keys {
