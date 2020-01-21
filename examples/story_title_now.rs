@@ -15,6 +15,11 @@ fn get_hashmap_keys(key: String) -> RedisResult<Vec<u32>> {
     con.hkeys(key)
 }
 
+fn check_for_title(item: Item) -> bool {
+    println!("{:?}", item.title());
+    return true
+}
+
 fn main() -> Result<(), Error> {
     let mut keys = get_hashmap_keys("hn-story-20".to_string()).unwrap();
     keys.sort();
@@ -33,6 +38,8 @@ fn main() -> Result<(), Error> {
         let item_json = value.unwrap();
 
         let item: Item = serde_json::from_str(&item_json).unwrap();
+
+        let title_exists = check_for_title(item);
 
     }
     output.sync_all()?;
