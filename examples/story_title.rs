@@ -32,8 +32,15 @@ fn main() -> Result<(), Error> {
         let value: RedisResult<String> = con.hget("hn-story-20".to_string(), key.to_string());
         let item_json = value.unwrap();
 
-        // let item: Item = serde_json::from_str(&item_json).unwrap();
+        let item: Item = serde_json::from_str(&item_json).unwrap();
+        println!("{}, {:?}", key, item.title().unwrap());
+    }
+    output.sync_all()?;
+    println!("Number of keys = {}", keys.len());
+    Ok(())
+}
 
+/*
         match item_json.as_ref() {
             "null" => println!("\n{} null\n", key),
             _ => {
@@ -49,25 +56,20 @@ fn main() -> Result<(), Error> {
                 }
             }
         }
+*/
+//        println!("{:?}", item.title().unwrap());
 
-        //        println!("{:?}", item.title().unwrap());
+/*
+        println!("{} story", item_id);
+        println!("{:?}", item.title().unwrap());
 
-        /*
-                println!("{} story", item_id);
-                println!("{:?}", item.title().unwrap());
+        let titlejson = json!({
+            "id": key,
+            "title": title,
+        });
 
-                let titlejson = json!({
-                    "id": key,
-                    "title": title,
-                });
-
-                // Convert to a string of JSON and print it out
-                println!("{}", titlejson.to_string());
-        */
-        write!(output, "{}", item_json.to_string())?;
-        write!(output, "{}", "\n")?;
-    }
-    output.sync_all()?;
-    println!("Number of keys = {}", keys.len());
-    Ok(())
-}
+        // Convert to a string of JSON and print it out
+        println!("{}", titlejson.to_string());
+*/
+//write!(output, "{}", item_json.to_string())?;
+//write!(output, "{}", "\n")?;
