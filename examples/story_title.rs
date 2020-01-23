@@ -32,7 +32,7 @@ fn main() -> Result<(), Error> {
         let value: RedisResult<String> = con.hget("hn-story-20".to_string(), key.to_string());
         let item_json = value.unwrap();
 
-        let item: Item = serde_json::from_str(&item_json).unwrap();
+        // let item: Item = serde_json::from_str(&item_json).unwrap();
 
         match item_json.as_ref() {
             "null" => println!("\n{} null\n", key),
@@ -41,8 +41,8 @@ fn main() -> Result<(), Error> {
                 let item_type = item.item_type();
                 match item_type.as_ref() {
                     "story" => {
-                        println!("{} story", key);
-                        println!("{:?}", item.title().unwrap());
+                        // println!("{} story", key);
+                        println!("{}, {:?}", key, item.title().unwrap());
                         // let _ = write_json_to_redis(item_id.to_string(), item_json);
                     }
                     _ => {}
