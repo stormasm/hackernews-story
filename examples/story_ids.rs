@@ -14,10 +14,12 @@ fn get_hashmap_keys(key: String) -> RedisResult<Vec<u32>> {
 }
 
 fn main() -> Result<(), Error> {
-    let mut keys = get_hashmap_keys("hn-story-20".to_string()).unwrap();
+    let hn_story_key = "hn-story-20";
+
+    let mut keys = get_hashmap_keys(hn_story_key.to_string()).unwrap();
     keys.sort();
 
-    let path = "./../data/story-ids.json";
+    let path = "/tmp13/hackernews-story-archive/data/story-ids.json";
     let mut output = File::create(path)?;
 
     write!(output, "{}", "[")?;
