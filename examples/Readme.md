@@ -10,3 +10,5 @@ Notes on files in the example directory...
 4) story_title_delete removes the ids that do not have a title
 
 5) story_tile creates a file with lines of json including the id and title
+
+6) story_time_url creates a file with lines of json including the id, title, time and url.
